@@ -24,11 +24,11 @@ function returnResult($action, $success = true, $id = 0)
 }
 
 //Select All
-$app->get('/students', function () {
-	$students = R::findAll('students','ORDER BY student_name');
+$app->get('/available_trends', function () {
+	$avalaible_trends = R::findAll('available_trends');
 	try {
-		$students = R::exportAll($students);
-		echo json_encode($students);
+		$avalaible_trends = R::exportAll($avalaible_trends);
+		echo json_encode($avalaible_trends);
 	}
 	catch(Exception $ex) {
 		//$success = $ex->getMessage(); //para debug
