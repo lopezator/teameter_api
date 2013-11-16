@@ -1,0 +1,7 @@
+#Eclipse ignores
+.buildpath
+.project
+.settings/
+
+#Redbean database config
+config/config.inc.php
