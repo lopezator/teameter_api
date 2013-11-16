@@ -105,5 +105,10 @@ $app->delete('/student/:student_id', function ($student_id) {
     returnResult('delete', $success, $student_id);
 });
 
+//404 Not found
+$app->notFound(function () use ($app) {
+	$app->render('404.html');
+});
+
 //Lanzar
 $app->run();
