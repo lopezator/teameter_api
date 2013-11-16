@@ -107,7 +107,7 @@ $app->delete('/student/:student_id', function ($student_id) {
 
 //404 Not found
 $app->notFound(function () use ($app) {
-	$app->render('404.html');
+	$app->render('404.php');
 });
 
 //Lanzar
