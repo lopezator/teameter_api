@@ -38,7 +38,7 @@ $app->get('/available_trends', function () {
 
 //Select Por ID
 $app->get('/tweets_count/:raw_tweet', function ($raw_tweet) {
-	$tweet_count = R::getRow('select count(*) from tweets where raw_tweet like ?',array('%'.$raw_tweet.'%'));
+	$tweet_count = R::getRow('select count(*) from tweets where raw_tweet like ?',array('%'.serialize(base64_encode($raw_tweet)).'%'));
 	try {
 		$student = R::exportAll($tweet_count);
 		echo json_encode($tweet_count);
