@@ -37,73 +37,24 @@ $app->get('/available_trends', function () {
 });
 
 //Select Por ID
-$app->get('/tweets_count/:raw_tweet', function ($raw_tweet) {
-	$tweet_count = R::getRow('select count(*) from tweets where raw_tweet like ?',array('%'.serialize(base64_encode($raw_tweet)).'%'));
-	try {
-		$student = R::exportAll($tweet_count);
-		echo json_encode($tweet_count);
-	}
-	catch(Exception $ex) {
-		//$success = $ex->getMessage(); //para debug
-		returnResult('select', false, -1);
-	}
-});
+/*$app->get('/foo/:bar', function ($bar) {
+	
+});*/
 
 //Insert 
-$app->post('/student', function () use ($app) {
-	$success = true;
-    $student = R::dispense('students');
-    $student->student_id = $app->request()->post('student_id');
-    $student->student_name = $app->request()->post('student_name');
-    $student->score = $app->request()->post('score');
-    $student->date = R::isoDateTime();
-    
-    try {
-   		R::store($student);
-    }
-    catch(Exception $ex) {
-    	//$success = $ex->getMessage(); //para debug
-    	$success = false;
-    }
-    
-    returnResult('add', $success, $student_id);
-});
+/*$app->post('/foo', function () use ($app) {
+
+});*/
 
 //Update
-$app->put('/student/:student_id', function ($student_id) use ($app) {
-	$success = true;
-	$student = R::findOne('students','student_id=?',array($student_id));
-    $student->student_id = $app->request()->post('student_id');
-    $student->student_name = $app->request()->post('student_name');
-    $student->score = $app->request()->post('score');
-    $student->date = $app->request()->post('date');
-    
-    try {
-    	R::store($student);
-    }
-    catch(Exception $ex) {
-    	//$success = $ex->getMessage(); //para debug
-    	$success = false;
-    }
+/*$app->put('/foo/:bar', function ($bar) use ($app) {
 
-    returnResult('edit', $success, $student_id);
-});
+});*/
 
 //Delete
-$app->delete('/student/:student_id', function ($student_id) {
-	$success = true;
-    $student = R::load('students', $student_id);
-	
-    try {
-    	R::trash($student);
-    }
-    catch(Exception $ex) {
-    	//$success = $ex->getMessage(); //para debug
-    	$success = false;
-    }
+/*$app->delete('/foo/:bar', function ($bar) {
 
-    returnResult('delete', $success, $student_id);
-});
+});*/
 
 //Lanzar
 $app->run();
